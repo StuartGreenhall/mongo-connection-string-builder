@@ -1,4 +1,3 @@
-"use strict"
 var url = require('url');
 
 var noOptions = {};
@@ -29,5 +28,5 @@ function getAuthenticatedConnectionString(baseMongoUrl, options) {
 }
 
 module.exports = {
-  getAuthenticatedConnectionString
+  getAuthenticatedConnectionString: getAuthenticatedConnectionString
 }
