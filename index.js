@@ -11,20 +11,21 @@ function getCredentials() {
 
 function getAuthenticatedConnectionString(baseMongoUrl, options) {
 
-  var options = options || noOptions
-  var userCredentials = getCredentials();
-  var theUrl = url.parse(baseMongoUrl, true);
+ var options = options || noOptions
+ var userCredentials = getCredentials();
+ baseMongoUrl = baseMongoUrl.replace(/,/g, '_comma_');
+ var theUrl = url.parse(baseMongoUrl, true);
 
-  var newUrl = {
-    protocol: theUrl.protocol,
-    host: theUrl.host,
-    pathname: theUrl.pathname,
-    slashes: true,
-    query : Object.assign({}, theUrl.query, options),
-    auth : userCredentials
-  }
+ var newUrl = {
+   protocol: theUrl.protocol,
+   host: theUrl.host,
+   pathname: theUrl.pathname,
+   slashes: true,
+   query : Object.assign({}, theUrl.query, options),
+   auth : userCredentials
+ }
 
-  return url.format(newUrl);
+ return url.format(newUrl).replace(/_comma_/g, ',');
 }
 
 module.exports = {

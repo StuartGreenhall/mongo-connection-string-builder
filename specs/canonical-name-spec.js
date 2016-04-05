@@ -41,9 +41,17 @@ describe("Authenticated DB connection string", function(){
         .should.be.eql("mongodb://bob:password@localhost:27017/dbname?secondary=true&authmechanism=MONGOCR&authSource=admin");
   });
 
-  //   it("nothing when set to production", function(){
-  //     process.env.NODE_ENV = "production";
-  //     index.getCanonicalDbName("aCollection").should.be.eql("aCollection");
-  //   });
+  it("allows multiple host names in url to support replica set conncetion strings", function(){
+      process.env.MONGO_USER = "bob";
+      process.env.MONGO_PASSWORD = "password";
+
+      var options = {
+        authmechanism : 'MONGOCR',
+        authSource : 'admin'
+      }
+
+      index.getAuthenticatedConnectionString("mongodb://mongo1,mongo2,mongo3/dbname", options)
+        .should.be.eql("mongodb://bob:password@mongo1,mongo2,mongo3/dbname?authmechanism=MONGOCR&authSource=admin");
+  });
   // });
 });
