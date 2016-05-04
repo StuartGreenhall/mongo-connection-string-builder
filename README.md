@@ -31,6 +31,20 @@ someMongoLib.connect(connectionString);
 
 ```
 
+###Setting the ENVs manually (Danger Will Robinson)
+```javascript
+process.env.MONGO_USER = 'user';
+process.env.MONGO_PASSWORD = 'password';
+
+var mcsb = require('mongo-connection-string-builder');
+var connectionString = mcsb.getAuthenticatedConnectionString("mongodb://localhost:27017/dbname");
+
+//example usage of the connection string
+var someMongoLib = require('someMongoLib');
+someMongoLib.connect(connectionString);
+
+```
+
 
 
 
