@@ -32,7 +32,7 @@ someMongoLib.connect(connectionString);
 ```
 
 ###Setting the ENVs manually
-**Danger Will Robinson** While this can be useful for testing its probably not appropriate for production. 
+**Danger Will Robinson!** - While this can be useful for testing its probably not appropriate for production. 
 
 ```javascript
 process.env.MONGO_USER = 'user';
